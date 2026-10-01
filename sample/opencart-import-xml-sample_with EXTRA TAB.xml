@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<products>
+  <product>
+    <sku><![CDATA[0345B002]]></sku>
+    <name><![CDATA[Canon EF 70-300mm f/4-5.6 IS USM Lens for Canon EOS SLR Cameras]]></name>
+    <description>
+      <![CDATA[
+	  True creative mastery is yours with a PowerShot model that is built to impress. The G12 and S95 offer a full range of shooting and recording modes and compatibility with exciting accessories such as Speedlite flashes and remote 
+		switches - a professional's camera in compact size.&nbsp;True creative mastery is yours with a PowerShot model that is built to impress. The G12 and S95 offer a full range of shooting and recording modes and compatibility with 
+    exciting accessories such as Speedlite flashes and remote switches – a professional's camera in compact size.
+	]]>
+    </description>
+    <model><![CDATA[0345B002]]></model>
+    <meta_keyword><![CDATA[]]></meta_keyword>
+    <meta_description><![CDATA[]]></meta_description>
+    <tag><![CDATA[]]></tag>
+    <keyword><![CDATA[]]></keyword>
+    <sort_order>1</sort_order>
+    <upc>013803050851</upc>
+    <ean></ean>
+    <jan></jan>
+    <isbn></isbn>
+    <mpn>0345B002</mpn>
+    <location></location>
+    <price>399.95</price>
+    <tax_class>Taxable Goods</tax_class>
+    <quantity>59</quantity>
+    <minimum>1</minimum>
+    <subtract></subtract>
+    <stock_status>In Stock</stock_status>
+    <shipping>1</shipping>
+    <width>0</width>
+    <length>0</length>
+    <height>0</height>
+    <length_class>inches</length_class>
+    <weight>2</weight>
+    <weight_class>oz</weight_class>
+    <status>1</status>
+    <manufacturer><![CDATA[Canon]]></manufacturer>
+    <points>10</points>
+    <download>10</download>
+    <categories>
+      <categoryid>66</categoryid>
+    </categories>
+    <!--<extension name="custom_product_tab" field="What's In The Box">
+      <![CDATA[Hello World]]>
+    </extension>-->
+    <extension name="extra_tab_in_products" field="What's In The Box">
+      <![CDATA[ <b>Canon EF 70-300mm f/4-5.6 IS USM Lens<br />E-58U 58mm Snap-On Lens Cap<br />Lens Dust Cap E (Rear)<br />1-Year Canon Warranty</b>]]>
+    </extension>
+ 
+    <product_stores>
+      <product_store>0</product_store>
+    </product_stores>
+    <generate_thumbnail>Y</generate_thumbnail>
+    
+    <specials>
+      <special>
+        <customer_group>Default</customer_group>
+        <priority>1</priority>
+        <price>100</price>
+        <date_start></date_start>
+        <date_end></date_end>
+      </special>
+    </specials>
+  </product>
+
+</products>

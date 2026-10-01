@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<products>
+    <product>
+        <sku><![CDATA[FIIOA3BLK]]></sku>
+        <name><![CDATA[FiiO A3 Portable Headphone Amplifier (Black)]]></name>
+        <description><![CDATA[<b>E11K is now the A3, same great amp, just a different name.</b><br><br> Maximize your music enjoyment with the FiiO A3 portable headphone amplifier. Whether soaking in the intricacies of a high resolution recording, or just rocking out to your favorite beats, the A3 is the perfect power source for your favorite headphones.<br><br> <b>Solid, Powerful</b><br> Suitable for headphones ranging from 16 to 150 Ohms, the A3 is potent enough to drive all but the most power hungry headphones. Use the low gain setting with high sensitivity IEMs, or switch it to high gain for full size headphones. <br><br> <b>Audiophile Grade Design</b><br> The A3 offers superior sound quality through expertly selected components and design. Its pre-amplifier section is based on the TI OPA1642, with excellent layering, midrange resolution, and high frequency extension. The power amplifier section relies on the AD8397 for great bass control and smooth drive characteristics.<br><br> <b>Sophisticated Bass Boost</b><br> A fully discrete bass boost circuit increases output by 3.5dB at 60Hz, producing a gentle swell of low end energy that preserves the overall sound field. The bass boost circuit is completely bypass when off to ensure low noise floor and purity of sound quality.<br><br> <b>Craftsmanship</b><br> The A3 is handsome with an all aluminum body and chassis. Not only is it solid and sturdy, it also provides superior shielding from EM interference. A knurled volume knob is mated to a smooth turning ALPS potentiometer. Toggle switches are used for enhanced reliability and are easier to operate. A 1400mAh internal battery powers the A3 for up to 16 hours of use. <br><br> <b>Specification</b><br> FR: 20Hz ~ 20kHz<br> SNR: >108dB<br> THD+N: 0.004% (1kHz)<br> Charge Time: 4h<br> Work Time: 16h<br> Drive Capability: 16~150 Ohm<br> Dimensions: 91.2mm x 56mm x 13mm<br> Weight: 92g
+<br><br>]]></description>
+        <model><![CDATA[FIIOA3BLK]]></model>
+        <meta_keyword><![CDATA[]]></meta_keyword>
+        <meta_description><![CDATA[]]></meta_description>
+        <tag><![CDATA[]]></tag>
+        <keyword><![CDATA[]]></keyword>
+        <sort_order>1</sort_order>
+        <upc></upc>
+        <ean></ean>
+        <jan></jan>
+        <isbn></isbn>
+        <mpn>A3BK</mpn>
+        <location></location>
+        <price>59.99</price>
+        <tax_class>Taxable Goods</tax_class>
+        <quantity>10</quantity>
+        <minimum>1</minimum>
+        <subtract></subtract>
+        <stock_status>In Stock</stock_status>
+        <shipping>1</shipping>
+        <width>2.6</width>
+        <length>4.9</length>
+        <height>0.6</height>
+        <length_class>inches</length_class>
+        <weight>0.1875</weight>
+        <weight_class_id>5</weight_class_id>
+        <status>1</status>
+        <manufacturer><![CDATA[FiiO]]></manufacturer>
+        <points>10</points>
+        <download>10</download>
+        <categories>
+            <categoryid>17</categoryid>
+        </categories>
+        <product_stores>
+            <product_store>0</product_store>
+        </product_stores>
+        <generate_thumbnail>Y</generate_thumbnail>
+        <image>https://images.example.com/products/FIIOA3BLK/1db0a9ff-ccb6-4a6f-b2cf-22171adfdb0a.jpg</image>
+        <product_images>
+            <product_image>
+                <image>https://images.example.com/products/FIIOA3BLK/57c30460-eb24-4be7-9886-b2b077f7f09a.jpg</image>
+                <sort_order>1</sort_order>
+            </product_image>
+            <product_image>
+                <image>https://images.example.com/products/FIIOA3BLK/8dc52a3c-0736-4ce0-8e11-b2db4d8ecfd1.jpg</image>
+                <sort_order>2</sort_order>
+            </product_image>
+            <product_image>
+                <image>https://images.example.com/products/FIIOA3BLK/0c22b8a3-3ed2-42c7-8f23-d2f5d75052da.jpg</image>
+                <sort_order>3</sort_order>
+            </product_image>
+            <product_image>
+                <image>https://images.example.com/products/FIIOA3BLK/d49f9647-ba28-4cde-af0f-5ed1241efb6b.jpg</image>
+                <sort_order>4</sort_order>
+            </product_image>
+            <product_image>
+                <image>https://images.example.com/products/FIIOA3BLK/cf414d31-8bf4-40c4-9b51-817eba317cc5.jpg</image>
+                <sort_order>5</sort_order>
+            </product_image>
+            <product_image>
+                <image>https://images.example.com/products/FIIOA3BLK/bdca2f0a-5af9-408c-854a-82f2755a489c.jpg</image>
+                <sort_order>6</sort_order>
+            </product_image>
+            <product_image>
+                <image>https://images.example.com/products/FIIOA3BLK/86cb07e0-af9e-45c0-ad42-452cd550a3d7.jpg</image>
+                <sort_order>7</sort_order>
+            </product_image>
+        </product_images>
+        <specials></specials>
+    </product>
+
+</products>

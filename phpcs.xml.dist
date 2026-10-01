@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ruleset name="legacy-plugin-quality">
+    <description>Legacy OpenCart plugin coding standards.</description>
+    <rule ref="PSR12"/>
+
+    <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace"><severity>0</severity></rule>
+    <rule ref="PSR1.Classes.ClassDeclaration.MultipleClasses"><severity>0</severity></rule>
+    <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCapsMethodName"><severity>0</severity></rule>
+    <rule ref="Squiz.Classes.ValidClassName.NotCamelCaps"><severity>0</severity></rule>
+
+    <file>src/system/library/scoc_utility.php</file>
+    <file>tests</file>
+</ruleset>

@@ -1,0 +1,1 @@
+<b>Notice</b>: Error: Unknown column 'extra_tab_title' in 'field list'<br />Error No: 1054<br />UPDATE oc_product_description SET  extra_tab_title = 'What\'s In The Box', extra_tab_text = 'Extra narrow concentrator nozzle' WHERE product_id = '55' and language_id = '1' 

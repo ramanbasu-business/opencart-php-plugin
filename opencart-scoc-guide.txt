@@ -1,0 +1,77 @@
+
+//1)in "F:\xampp\htdocs\opencart3020\system\startup.php"
+//insert the following------------
+
+////scoc
+//require_once(DIR_SYSTEM . 'library/scoc_lib.php');
+
+
+TEST URLS
+*************************************
+INSTALL
+=======*
+http://www.localhost.com/opencart3020/index.php?route=scoc/install/index
+http://www.localhost.com/opencart3036/index.php?route=scoc/install/index
+
+AUTH
+====*
+http://www.localhost.com/opencart3020/index.php?route=scoc/export/auth&u=admin&p=CHANGE_ME
+
+CATEGORY
+=======*
+http://www.localhost.com/opencart3020/index.php?route=scoc/export/category&ignorelogin=1
+
+
+ORDERS
+======*
+http://www.localhost.com/opencart3020/index.php?route=scoc/export/order&u=admin&p=CHANGE_ME&currentPageIndex=0&rowsPerPage=2
+
+http://www.localhost.com/opencart3020/index.php?route=scoc/export/order&u=admin&p=CHANGE_ME&currentPageIndex=0&rowsPerPage=2&id=1
+
+http://www.localhost.com/opencart3020/index.php?route=scoc/export/order&u=admin&p=CHANGE_ME&currentPageIndex=0&rowsPerPage=2&from=2013-11-10&to=2013-12-15
+
+PRODUCTS
+========*
+http://www.localhost.com/opencart3020/index.php?route=scoc/export/product&currentPageIndex=0&rowsPerPage=2&ignorelogin=1
+
+INVENTORY DOWNLOAD
+==================*
+http://www.localhost.com/opencart3020/index.php?route=scoc/export/inventorydownload&u=admin&p=CHANGE_ME
+
+
+PRODUCT CSV
+=========
+1) http://www.localhost.com/opencart3020/index.php?u=admin&p=CHANGE_ME&route=scoc/export/productcsv&currentPageIndex=0&rowsPerPage=10
+
+2) http://www.localhost.com/opencart3020/index.php?u=admin&p=CHANGE_ME&route=scoc/export/csv
+
+IMPORT
+=========
+XML submission path-
+http://www.localhost.com/opencart3020/index.php?route=scoc/import&test=1&verbose=1
+
+
+IMPORT XML PATH
+==============
+http://www.localhost.com/opencart3020/system/logs/import-log-271113080502.xml
+http://opencart.cellphonemate.net/system/logs/import-xml-301213075445.xml
+
+CRON
+http://www.localhost.com/opencart3020/index.php?route=scoc/cron&id=1
+http://www.localhost.com/opencart3020/index.php?route=scoc/cron
+http://opencart.cellphonemate.net/index.php?route=scoc/cron&id=70
+
+GETJOB
+=======
+http://www.localhost.com/opencart3020/index.php?route=scoc/job/getjob&u=admin&p=CHANGE_ME&id=1
+http://opencart.cellphonemate.net/index.php?route=scoc/job/getjob&u=admin&p=CHANGE_ME&id=6
+
+SHIPPING
+========*
+http://www.localhost.com/opencart3020/index.php?route=scoc/export/shipping&ignorelogin=1
+
+
+ADMIN LOGIN
+==============
+http://your-store.example/admin
+admin / CHANGE_ME

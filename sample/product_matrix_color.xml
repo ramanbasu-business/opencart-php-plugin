@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<products>
+  <product>
+    <sku><![CDATA[IPADA216GB]]></sku>
+    <name><![CDATA[Apple iPad Air 2 (16GB, Wi-Fi)]]></name>
+    <description>
+      <![CDATA[<p><ul>
+    <li>9.7" IPS LCD Multi-Touch Retina Display</li>
+    <li>2048 x 1536 Native Resolution</li>
+    <li>Tri-Core Apple A8X CPU with M8 Chip</li>
+    <li>0.96 lb and 0.24" Thick</li>
+</ul>
+<p>This iPad features 802.11a/b/g/n/ac Wi-Fi technology with MIMO support for download speeds up to 866 Mbps as well as Bluetooth 4.0. Share documents and files with AirDrop and stream your iPad's content to your compatible HDTV and speakers with AirPlay.</p>
+<p>The LED-backlit 9.7" 2048 x 1536 Retina IPS LCD display's anti-reflective coating reduces glare by 56% and uses a single-layer design to eliminate internal reflectance for richer colors, greater contrast, and sharper images.</p>
+<p>Featuring Apple's 64-bit A8X chip and M8 coprocessor, the Air 2 delivers 40% faster CPU performance and 2.5 times the graphics performance when compared to its predecessor. It's also 18% thinner at 0.24" and weighs 0.96 lb.</p></p>
+<p><span class="Apple-tab-span" style="white-space: pre;"></span></p>
+<p>&nbsp;</p>]]>
+    </description>
+    <model><![CDATA[IPADA216GB]]></model>
+    <meta_keyword><![CDATA[]]></meta_keyword>
+    <meta_description><![CDATA[]]></meta_description>
+    <tag><![CDATA[]]></tag>
+    <keyword><![CDATA[]]></keyword>
+    <sort_order>1</sort_order>
+    <upc></upc>
+    <ean></ean>
+    <jan></jan>
+    <isbn></isbn>
+    <mpn></mpn>
+    <location></location>
+    <price>449</price>
+    <tax_class>Taxable Goods</tax_class>
+    <quantity>0</quantity>
+    <minimum>1</minimum>
+    <subtract></subtract>
+    <stock_status>In Stock</stock_status>
+    <shipping>1</shipping>
+    <width>0</width>
+    <length>0</length>
+    <height>0</height>
+    <length_class>inches</length_class>
+    <weight>0</weight>
+    <weight_class_id>5</weight_class_id>
+    <status>1</status>
+    <manufacturer><![CDATA[Unknown]]></manufacturer>
+    <points>10</points>
+    <download>10</download>
+    <categories>
+      <categoryid>84</categoryid>
+    </categories>
+    <product_stores>
+      <product_store>0</product_store>
+    </product_stores>
+    <generate_thumbnail>Y</generate_thumbnail>
+    <image>https://images.example.com/products/IPADA216GB/6c0d1ed5-7402-4aa2-8192-3a7063903a0b.jpg</image>
+    <product_images>
+      <product_image>
+        <image>https://images.example.com/products/IPADA216GB/62bb0975-44a4-452b-b53a-8382bba03c64.jpg</image>
+        <sort_order>3</sort_order>
+      </product_image>
+    </product_images>
+    <specials></specials>
+    <product_options>
+      <product_option>
+        <type>select</type>
+        <option_name>COLOR</option_name>
+        <required>1</required>
+        <option_value></option_value>
+        <product_option_value>
+          <option_value_name>Gold</option_value_name>
+          <quantity>0</quantity>
+          <subtract>1</subtract>
+          <price>0.00</price>
+          <price_prefix>+</price_prefix>
+          <points>0</points>
+          <points_prefix>+</points_prefix>
+          <weight></weight>
+          <weight_prefix>+</weight_prefix>
+        </product_option_value>
+        <product_option_value>
+          <option_value_name>Silver</option_value_name>
+          <quantity>0</quantity>
+          <subtract>1</subtract>
+          <price>0.00</price>
+          <price_prefix>+</price_prefix>
+          <points>0</points>
+          <points_prefix>+</points_prefix>
+          <weight></weight>
+          <weight_prefix>+</weight_prefix>
+        </product_option_value>
+        <product_option_value>
+          <option_value_name>Space Gray</option_value_name>
+          <quantity>0</quantity>
+          <subtract>1</subtract>
+          <price>0.00</price>
+          <price_prefix>+</price_prefix>
+          <points>0</points>
+          <points_prefix>+</points_prefix>
+          <weight></weight>
+          <weight_prefix>+</weight_prefix>
+        </product_option_value>
+      </product_option>
+    </product_options>
+  </product>
+
+</products>

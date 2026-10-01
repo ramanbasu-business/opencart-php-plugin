@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<products>
+  <product>
+    <sku>test1</sku>
+    <name>test1 Test Product</name>
+    <description>test1 Product description</description>
+    <model>test1-product</model>
+    <meta_keyword>test1 Test</meta_keyword>
+    <meta_description>T1 product</meta_description>
+    <tag>test1</tag>
+    <keyword>test1</keyword>
+    <sort_order>1</sort_order>
+    <upc>upc 1</upc><!-- actual value -->
+    <ean>ean 1</ean><!-- actual value -->
+    <jan>jan 1</jan><!-- actual value -->
+    <isbn>isbn 1</isbn><!-- actual value -->
+    <mpn>mpn 1</mpn><!-- actual value -->
+    <location>location 1</location><!-- actual value -->
+    <price>1.0</price><!-- actual value decimal -->
+    <tax_class>Taxable Goods</tax_class>
+    <quantity>10</quantity>
+    <minimum>1</minimum><!-- minimum qty: 0 -->
+    <subtract></subtract>
+    <stock_status>In Stock</stock_status>
+    <!-- In Stock/Pre-Order/Out Of Stock/2 - 3 Days-->
+    <shipping>1</shipping><!--1:enable, 0: disable -->
+    <date_available>2013-11-19</date_available><!-- optional date -->
+    <width>5</width>
+    <length>10</length>
+    <height>30.01</height>
+    <length_class>mm</length_class>
+    <weight>25</weight>
+    <weight_class>g</weight_class>
+    <status>1</status>
+    <manufacturer>Bose</manufacturer><!-- manufacturer name, must be present -->
+    <points>10</points>
+    <download>10</download>
+    <categories>
+      <categoryid>33</categoryid>
+    </categories><!-- one or more category id -->
+    <product_stores>
+      <product_store>0</product_store>
+    </product_stores>
+    <generate_thumbnail>Y</generate_thumbnail>
+    <image>https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png</image>
+    <product_images>
+      <product_image>
+        <image></image>
+        <sort_order>1</sort_order>
+      </product_image>
+      <product_image>
+        <image></image>
+        <sort_order>2</sort_order>
+      </product_image>
+    </product_images>
+    <attributes>
+      <attribute>
+        <field>No. of Cores</field>
+        <value>3</value>
+      </attribute>
+    </attributes>
+    <discounts>
+      <discount>
+        <customer_group>Default</customer_group>
+        <quantity>10</quantity>
+        <priority>1</priority>
+        <price>1.00</price>
+        <date_start>2013-11-20</date_start>
+        <date_end>2013-12-31</date_end>
+      </discount>
+    </discounts>
+    <specials>
+      <special>
+        <customer_group>Default</customer_group>
+        <priority>1</priority>
+        <price>1.99</price>
+        <date_start>2013-11-20</date_start><!-- This can be left empty -->
+        <date_end>2014-11-20</date_end><!-- This can be left empty -->
+      </special>
+    </specials>
+    <product_rewards>
+      <product_reward>
+        <customer_group>Default</customer_group>
+        <points>100</points>
+      </product_reward>
+    </product_rewards>
+    
+    
+  </product>  
+  
+</products>

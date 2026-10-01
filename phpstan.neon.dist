@@ -1,0 +1,11 @@
+parameters:
+    level: 4
+    paths:
+        - src/system/library/scoc_utility.php
+        - tests
+    bootstrapFiles:
+        - tests/bootstrap.php
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        - message: '#Access to an undefined property DOMElement::\$preserveWhiteSpace\.#'
+        - message: '#If condition is always true\.#'

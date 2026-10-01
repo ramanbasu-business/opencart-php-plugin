@@ -1,0 +1,33 @@
+name: PHP quality
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          tools: composer
+
+      - name: Install PHP dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Lint PHP files
+        run: composer lint
+
+      - name: Run code style checks
+        run: composer phpcs
+
+      - name: Run static analysis
+        run: composer phpstan
+
+      - name: Run unit tests
+        run: composer test

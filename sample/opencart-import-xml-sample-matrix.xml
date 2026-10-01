@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<products>
+  <product>
+    <sku>MATRIX</sku>
+    <name>Matrix Test Product</name>
+    <description>Matrix Product description</description>
+    <model>MATRIX</model>
+    <meta_keyword>MATRIX Test</meta_keyword>
+    <meta_description>MATRIX product</meta_description>
+    <tag>T1</tag>
+    <keyword>T1</keyword>
+    <sort_order>1</sort_order>
+    <upc>upc 1</upc><!-- actual value -->
+    <ean>ean 1</ean><!-- actual value -->
+    <jan>jan 1</jan><!-- actual value -->
+    <isbn>isbn 1</isbn><!-- actual value -->
+    <mpn>mpn 1</mpn><!-- actual value -->
+    <location>location 1</location><!-- actual value -->
+    <price>1.0</price><!-- actual value decimal -->
+    <tax_class>Taxable Goods</tax_class>
+    <quantity>10</quantity>
+    <minimum>1</minimum><!-- minimum qty: 0 -->
+    <subtract></subtract>
+    <stock_status>In Stock</stock_status>
+    <!-- In Stock/Pre-Order/Out Of Stock/2 - 3 Days-->
+    <shipping>1</shipping><!--1:enable, 0: disable -->
+    <date_available>2013-11-19</date_available><!-- optional date -->
+    <width>5</width>
+    <length>10</length>
+    <height>30.01</height>
+    <length_class>mm</length_class>
+    <weight>25</weight>
+    <weight_class>g</weight_class>
+    <status>1</status>
+    <manufacturer>Bose</manufacturer><!-- manufacturer name, must be present -->
+    <points>10</points>
+    <download>10</download>
+    <categories>
+      <categoryid>33</categoryid>
+    </categories><!-- one or more category id -->
+    <product_stores>
+      <product_store>0</product_store>
+    </product_stores>
+    <generate_thumbnail>Y</generate_thumbnail>
+    <image>http://i2.listal.com/image/3968116/600full.jpg</image>
+    <product_images>
+      <product_image>
+        <image>http://www.lakshmansruthi.com/news/jan2011/images/Hollywood-superstar-Brad-Pitt.jpg</image>
+        <sort_order>1</sort_order>
+      </product_image>
+    </product_images>
+    <attributes>
+      <attribute>
+        <field>No. of Cores</field>
+        <value>3</value>
+      </attribute>
+    </attributes>
+    <discounts>
+      <discount>
+        <customer_group>Default</customer_group>
+        <quantity>10</quantity>
+        <priority>1</priority>
+        <price>1.00</price>
+        <date_start>2013-11-20</date_start>
+        <date_end>2013-12-31</date_end>
+      </discount>
+    </discounts>
+    <specials>
+      <special>
+        <customer_group>Default</customer_group>
+        <priority>1</priority>
+        <price>1.99</price>
+        <date_start>2013-11-20</date_start><!-- This can be left empty -->
+        <date_end>2014-11-20</date_end><!-- This can be left empty -->
+      </special>
+    </specials>
+    <product_rewards>
+      <product_reward>
+        <customer_group>Default</customer_group>
+        <points>100</points>
+      </product_reward>
+    </product_rewards>
+    
+    <product_options>
+      
+      <product_option>
+        <type>select</type>
+        <option_name>Color</option_name>
+        <required>1</required>
+        <option_value></option_value>
+        
+	<product_option_value>
+          <option_value_name>Red</option_value_name>
+          <quantity>100</quantity>
+          <subtract>1</subtract>
+          <price>0.25</price>
+          <price_prefix>+</price_prefix>
+          <points>50</points>
+          <points_prefix>+</points_prefix>
+          <weight>1.11</weight>
+          <weight_prefix>+</weight_prefix>
+        </product_option_value>
+        
+	<product_option_value>
+          <option_value_name>Green</option_value_name>
+          <quantity>200</quantity>
+          <subtract>1</subtract>
+          <price>0.50</price>
+          <price_prefix>-</price_prefix>
+          <points>60</points>
+          <points_prefix>+</points_prefix>
+          <weight>1.22</weight>
+          <weight_prefix>+</weight_prefix>
+        </product_option_value>
+	
+      </product_option>
+      
+      <product_option>
+        <type>select</type>
+        <option_name>Size</option_name>
+        <required>1</required>
+        <option_value></option_value>
+        
+	<product_option_value>
+          <option_value_name>Small</option_value_name>
+          <quantity>100</quantity>
+          <subtract>1</subtract>
+          <price>1.00</price>
+          <price_prefix>+</price_prefix>
+          <points>50</points>
+          <points_prefix>+</points_prefix>
+          <weight>1.11</weight>
+          <weight_prefix>+</weight_prefix>
+        </product_option_value>
+        
+	<product_option_value>
+          <option_value_name>Medium</option_value_name>
+          <quantity>200</quantity>
+          <subtract>1</subtract>
+          <price>0.50</price>
+          <price_prefix>-</price_prefix>
+          <points>60</points>
+          <points_prefix>+</points_prefix>
+          <weight>1.22</weight>
+          <weight_prefix>+</weight_prefix>
+        </product_option_value>
+	
+      </product_option>
+    </product_options>
+    
+  </product>
+  
+</products>

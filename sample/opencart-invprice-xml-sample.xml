@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<products module="invprice">
+  <product>
+    <sku>Product 15</sku>
+    <qty>860</qty>
+
+  </product>
+  <product>
+    <sku>FIIOA3BLK</sku>
+    <qty>99</qty>
+    <price>60</price>
+  </product>
+
+  <product>
+    <sku>invalid_sku</sku>
+    <qty>30</qty>
+    <price>30.00</price>
+  </product>
+</products>
