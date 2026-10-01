@@ -16,6 +16,9 @@ class scoc_encoder
     public $enabled = true;
     public $encryption = 0;
     public $key;
+    public $config;
+    public $response;
+    public $db;
     private $tripleDes;
     private $scoc_lib;
     private $verbose = 0;
@@ -33,6 +36,9 @@ class scoc_encoder
 
     private function resolveEncryptionKey()
     {
+        // Authentication secrets must come from server-controlled configuration or environment.
+        // Never derive a key from browser metadata such as the Origin header, because that value
+        // is caller-controlled and cannot reliably prove identity.
         if (isset($this->config) && method_exists($this->config, 'get')) {
             $configuredKey = trim((string) $this->config->get('scoc_secret_key'));
             if ($configuredKey !== '' && $configuredKey !== 'CHANGE_ME') {
@@ -107,6 +113,9 @@ class scoc_encoder
                 return $qryStrArray2;
             }
 
+            // Fail closed: if the secret is missing, do not attempt to authenticate with a weak
+            // or implicit value. This is safer than guessing a key from the request and is easy to
+            // reason about during maintenance or incident response.
             if ($this->key === '') {
                 $this->response->setOutput(sprintf($msg, "Authentication secret is not configured"));
                 return null;
@@ -149,10 +158,11 @@ class scoc_encoder
             }
 
 
-            //call login
+            // The request carries username/password data, but the decryption key is server-side only.
+            // This keeps the legacy protocol behavior intact while preventing trust in client-supplied
+            // headers or origin values.
             $adminPassword = trim((string)$qryStrArray2["p"]);
 
-            // Secret values must come from the configured store secret, never from the request origin.
             if ($this->key != "" && $this->encryption==0) :
                 $adminPassword = $this->decrypt($adminPassword);
             //echo $adminPassword;
