@@ -1,110 +1,130 @@
-# OpenCart Marketplace Sync Plugin
+# OpenCart PHP Plugin
 
-[![PHP Quality](https://github.com/ramanbasu-business/opencart-php-plugin/actions/workflows/php-quality.yml/badge.svg)](https://github.com/ramanbasu-business/opencart-php-plugin/actions/workflows/php-quality.yml)
+This repository contains a legacy OpenCart extension for XML-based catalog, order, shipping and inventory synchronization. It is not a standalone PHP application; it is meant to be installed into an existing OpenCart store and invoked through the store’s controller routes.
 
-This repository contains a legacy OpenCart extension that exports catalog, order, shipment and return data to an external marketplace or sync endpoint and accepts XML job payloads for import processing.
+The code in this repository follows the real OpenCart layout used by installed extensions:
 
-## 1. Objective
+- controllers live under `src/catalog/controller/scoc/`
+- shared library logic lives under `src/system/library/`
+- XML and job handling are implemented in legacy PHP classes rather than a modern service layer
 
-The code in this repository is not a modern application framework. It is an OpenCart plugin intended to be installed into an existing store and then called by a downstream system over XML endpoints. The main flows are:
+## What the plugin does
 
-- product export for catalog synchronization
-- category export for storefront taxonomy sync
-- order export for downstream order processing
-- inventory and shipping export for fulfilment updates
-- XML job import for product, order cancellation, order refund and inventory updates
-- scheduled execution through cron and job-based processing
+From the source code, the extension provides these main capabilities:
 
-This plugin does not provide a standalone storefront or a new database model. It relies on the OpenCart runtime, its catalog tables, and the admin user session that already exists in the host store.
+- product export
+- order export
+- category export
+- shipping export
+- inventory export
+- XML import jobs
+- cron-driven processing for queued jobs
+- job lookup and job log output endpoints
+- install-time database setup for the job table
 
-## 2. Architecture
+## Main code paths
 
-This project follows a legacy layered pattern rather than a modern clean-architecture layout. The plugin sits inside the OpenCart application structure, with controller classes under `src/catalog/controller/scoc/` and shared logic under `src/system/library/`.
+### Controllers
 
-```mermaid
-flowchart LR
-    A[Marketplace / external system] --> B[OpenCart route: export/auth]
-    B --> C[scoc_encoder authentication]
-    C --> D[scoc_lib business logic]
-    D --> E[OpenCart catalog and order models]
-    D --> F[XML response payload]
-    G[XML import job] --> H[scoc_importer]
-    H --> I[Product / order / refund processing]
-    I --> J[OpenCart database updates]
-    K[Cron / job runner] --> D
-```
+- `src/catalog/controller/scoc/install.php` – creates the job table and prints an install message
+- `src/catalog/controller/scoc/export.php` – exposes XML endpoints for authentication and export output
+- `src/catalog/controller/scoc/import.php` – receives XML payloads and dispatches processing
+- `src/catalog/controller/scoc/job.php` – returns job and log XML
+- `src/catalog/controller/scoc/cron.php` – runs queued jobs from cron
 
-Key components:
+### Libraries
 
-- `src/catalog/controller/scoc/export.php` — public XML endpoints for auth, product, order, category, inventory and shipping output
-- `src/catalog/controller/scoc/import.php` — receives XML import jobs and starts the importer
-- `src/catalog/controller/scoc/job.php` — returns job details and log output
-- `src/catalog/controller/scoc/cron.php` — cron entry point
-- `src/system/library/scoc_lib.php` — core data access and XML formatting logic
-- `src/system/library/scoc_encoder.php` — query-string authentication and decryption
-- `src/system/library/scoc_importer.php` — import pipeline for XML payloads
-- `src/system/library/scoc_utility.php` — string and XML sanitisation helpers
+- `src/system/library/scoc_lib.php` – central business logic, version metadata, job storage and XML responses
+- `src/system/library/scoc_encoder.php` – validates the `u` and `p` login parameters and decrypts the encrypted password when configured
+- `src/system/library/scoc_importer.php` – imports XML content into the OpenCart store
+- `src/system/library/scoc_utility.php` – sanitisation helpers for XML-safe strings
+- `src/system/library/scoc_TripleDES.php` – encryption/decryption helper used by the auth flow
+- `src/system/library/scoc_xmllog.php` – XML log helper for job output
 
-## 3. Coding style
+## Authentication model
 
-This repository keeps the original legacy naming and structure for compatibility with installed OpenCart stores.
+The actual auth flow is legacy and query-string based. The encoder checks the request query string, validates `u` and `p`, and then compares the supplied admin credentials against the OpenCart user table.
 
-- Language: PHP
-- Platform: OpenCart 2.x / 3.x style controller and library layout
-- Conventions: legacy class names such as `scoc_lib`, `scoc_encoder`, and `ControllerScocExport` are retained to avoid breaking the extension contract
-- Data access: direct OpenCart registry access and database queries, not a service container
-- Error handling: XML responses with status and message fields, plus job state updates in the database
-- Testing: pure logic tests for string sanitisation and XML-safe input handling; integration tests are manual on a real store
-- Commit convention: small, reviewable changes with one task per commit
+Important points from the code:
 
-## 4. Installation and deployment
+- the plugin expects a configured secret key and refuses authentication when it is missing
+- the secret is resolved from OpenCart config or the environment variable `SCOC_SECRET_KEY`
+- the code does not trust the browser `Origin` header as a secret source
+- unauthenticated or invalid requests return XML failure responses
 
-1. Copy the contents of `src/` into the root of the OpenCart store, merging the folders into the matching store paths.
-2. Ensure the `catalog/` and `system/` folders land in the correct location for the OpenCart instance.
-3. Open the store in a browser and hit the install route, for example:
-   - `http://your-store.example/index.php?route=scoc/install/index`
-4. After the installer runs, use the OpenCart admin panel to enable or validate the module configuration for the specific deployment.
-5. If the store requires a cron or scheduled task, configure the job URL and access credentials in the platform settings instead of embedding them in code.
+## Export and import routes
 
-## 5. Configuration
+The plugin exposes route-based endpoints in the style used by OpenCart controllers.
 
-The original plugin expects runtime values at the store level instead of literal credentials stored in the repository. In practice, the values are supplied by the OpenCart admin environment or by the calling system.
+### Install
 
-| Setting | Purpose | Example placeholder |
-|---|---|---|
-| admin username | Store login used by remote integration calls | `CHANGE_ME` |
-| admin password | Password used for authenticated XML requests | `CHANGE_ME` |
-| remote endpoint | URL the external system calls for product or order export | `https://example.com/index.php?route=scoc/export/product` |
-| cron URL | Scheduled call for import or job processing | `https://example.com/index.php?route=scoc/cron` |
-| sync job ID | Identifier for job-based processing | `1` |
-| store base URL | Used in generated XML output | `https://example.com/` |
+- `index.php?route=scoc/install/index`
 
-## 6. Security and compliance notes
+### Auth
 
-This project was built for a legacy OpenCart environment, so the security baseline is intentionally modest and should be reviewed before production use.
+- `index.php?route=scoc/export/auth&u=admin&p=CHANGE_ME`
 
-- Authentication uses the OpenCart admin user context and query-string checks rather than a modern OAuth or API key flow.
-- Real secrets are not committed to this repository; example values are placeholders only.
-- The plugin should be deployed behind HTTPS, with access restricted to the known integration endpoints.
-- The code is aligned with GDPR principles for minimal collection and careful handling of store data.
-- Security controls map to ISO 27001-style review points such as access control, traceability and configuration hygiene.
+### Product export
 
-## 7. Design decisions
+- `index.php?route=scoc/export/product`
+- `index.php?route=scoc/export/productcsv`
+- `index.php?route=scoc/export/csv`
 
-- [Legacy OpenCart sync architecture](docs/adr/001-legacy-opencart-sync.md)
+### Order export
 
-## 8. Known limits and next steps
+- `index.php?route=scoc/export/order`
 
-- The plugin still uses legacy XML-over-HTTP patterns and older PHP conventions.
-- Authentication and payload security should be tightened before production use in a modern store environment.
-- The project has no full Docker or database environment. It is meant to be validated on a real OpenCart install.
-- The codebase has a few legacy naming choices that are preserved for compatibility, even where a modern codebase would rename them.
+### Category export
 
-## 9. AI-assisted line, license, author
+- `index.php?route=scoc/export/category`
 
-This repository was prepared for GitHub showcase use and documentation review. The project remains a real, legacy OpenCart extension and does not claim a broader platform, scale or customer base than the code supports.
+### Shipping and inventory export
 
-- Author: Raman Basu
-- Email: ramanbasu.business@gmail.com
-- License: see the repository license file if present; otherwise the project should be treated as internal code pending explicit licensing.
-- AI-assisted line: this documentation and validation structure were prepared to improve clarity, security hygiene and client-facing presentation without altering the installed extension contract.
+- `index.php?route=scoc/export/shipping`
+- `index.php?route=scoc/export/inventorydownload`
+
+### XML job handling
+
+- `index.php?route=scoc/import`
+- `index.php?route=scoc/job/getjob&id=1&u=admin&p=CHANGE_ME`
+- `index.php?route=scoc/cron`
+
+The example route values in the repository are placeholders only. They are not production credentials and should be replaced with store-specific values when the plugin is deployed.
+
+## Deployment model
+
+1. Copy the `src/` directory into the root of the target OpenCart installation so the `catalog` and `system` trees land in the correct OpenCart locations.
+2. Load the install route once to create the job table.
+3. Configure the downstream system to call the export/import endpoints using the required `u`, `p`, and job parameters.
+4. Use cron or a scheduler to hit the cron route for queued imports.
+
+## Security notes
+
+This extension is intentionally a legacy OpenCart plugin. It does not implement modern authentication protocols such as OAuth, API keys with scoped permissions, or signed JWTs.
+
+The current repo includes safeguards that are aligned with the codebase:
+
+- secrets are configured from server-side config/environment, not request metadata
+- a missing secret causes a fail-closed auth response
+- no real client identifiers or credentials are checked into the public repo
+
+See [SECURITY.md](SECURITY.md) for the project’s security policy and disclosure process.
+
+## Testing
+
+The project includes a small PHPUnit suite focused on runtime-safe checks for the legacy code:
+
+- `tests/ScocUtilityTest.php` validates XML-safe string cleaning
+- `tests/ScocEncoderSecurityTest.php` validates the fail-closed auth behavior and secret resolution
+
+The repo also includes a PHP quality workflow under `.github/workflows/php-quality.yml`.
+
+## Project status
+
+The source currently reports plugin version `4.0.2.1` in `scoc_lib.php`, while earlier notes in `version.txt` document the historical version milestones that were shipped in older store installs. This is a maintained legacy extension, not a new application framework.
+
+## Related documents
+
+- [docs/adr/001-legacy-opencart-sync.md](docs/adr/001-legacy-opencart-sync.md)
+- [SECURITY.md](SECURITY.md)
+- [CHANGELOG.md](CHANGELOG.md)
