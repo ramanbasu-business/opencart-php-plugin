@@ -19,16 +19,35 @@ class scoc_TripleDES
     public function __construct()
     {
         $Password = "";
-        $this->bPassword = md5(utf8_encode($Password), true);
+        $this->bPassword = md5(self::utf8EncodeLegacy($Password), true);
         $this->bPassword .= substr($this->bPassword, 0, 8);
         $this->sPassword = $Password;
     }
 
     public function setSalt($salt)
     {
-        $this->bPassword = md5(utf8_encode($salt), true);
+        $this->bPassword = md5(self::utf8EncodeLegacy($salt), true);
         $this->bPassword .= substr($this->bPassword, 0, 8);
         $this->sPassword = $salt;
+    }
+
+    private static function utf8EncodeLegacy($value)
+    {
+        $value = (string) $value;
+
+        if ($value === '') {
+            return $value;
+        }
+
+        if (preg_match('//u', $value) === 1) {
+            return $value;
+        }
+
+        if (function_exists('mb_convert_encoding')) {
+            return mb_convert_encoding($value, 'UTF-8', 'ISO-8859-1');
+        }
+
+        return iconv('ISO-8859-1', 'UTF-8//IGNORE', $value);
     }
 
     public function PasswordHash()

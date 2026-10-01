@@ -16,6 +16,7 @@ class scoc_encoder
     public $enabled = true;
     public $encryption = 0;
     public $key;
+    public $registry;
     public $config;
     public $response;
     public $db;
