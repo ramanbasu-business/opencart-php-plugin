@@ -27,11 +27,28 @@ class scoc_encoder
         require_once DIR_SYSTEM . "library/scoc_TripleDES.php";
 
         $this->tripleDes = new scoc_TripleDES();
-        $this->scoc_lib=new scoc_lib($this->registry);
-        
-        if (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['HTTP_ORIGIN'] != "") :
-            $this->key = $_SERVER['HTTP_ORIGIN'];
-        endif;
+        $this->scoc_lib = new scoc_lib($this->registry);
+        $this->key = $this->resolveEncryptionKey();
+    }
+
+    private function resolveEncryptionKey()
+    {
+        if (isset($this->config) && method_exists($this->config, 'get')) {
+            $configuredKey = trim((string) $this->config->get('scoc_secret_key'));
+            if ($configuredKey !== '' && $configuredKey !== 'CHANGE_ME') {
+                return $configuredKey;
+            }
+        }
+
+        $envKey = getenv('SCOC_SECRET_KEY');
+        if (is_string($envKey)) {
+            $envKey = trim($envKey);
+            if ($envKey !== '' && $envKey !== 'CHANGE_ME') {
+                return $envKey;
+            }
+        }
+
+        return '';
     }
 
     public function __get($name)
@@ -44,14 +61,14 @@ class scoc_encoder
         /*         * *******************************************************
          *  Query string validation
          * ******************************************************* */
-        
+
         $this->encryption = 0;
         $qryStrArray = array();
         $q = $_SERVER["QUERY_STRING"];
-        
+
         parse_str($q, $qryStrArray);
         //var_dump($qryStrArray);
-        
+
         if (count($qryStrArray)==1) :
             reset($qryStrArray);
             $first_key = key($qryStrArray);
@@ -59,7 +76,7 @@ class scoc_encoder
                 $this->encryption = 1;
             endif;
         endif;
-        
+
         //var_dump($this->encryption);
         $this->enabled = $enabled;
         $this->verbose = 0;
@@ -74,7 +91,7 @@ class scoc_encoder
         /*         * ******************************************************** */
         //* @ End of Query string validation
     }
-    
+
     public function validateLogin()
     {
         $msg = "<response>"
@@ -88,6 +105,11 @@ class scoc_encoder
             //var_dump($qryStrArray2);
             if ($this->enabled == false) {
                 return $qryStrArray2;
+            }
+
+            if ($this->key === '') {
+                $this->response->setOutput(sprintf($msg, "Authentication secret is not configured"));
+                return null;
             }
 
             if ($qryStrArray2 == null || empty($qryStrArray2)) {
@@ -125,24 +147,22 @@ class scoc_encoder
                 $this->response->setOutput(sprintf($msg, 'Required parameter "p" is missing'));
                 return null;
             }
-            
-            
+
+
             //call login
             $adminPassword = trim((string)$qryStrArray2["p"]);
-            
-            // 22.4.0  added Raman Oct 30, 2017.
-            // If key is passed in host key "HTTP_ORIGIN", but Url is not fully encrypted,
-            // we should decrypt the "p" or password only.
+
+            // Secret values must come from the configured store secret, never from the request origin.
             if ($this->key != "" && $this->encryption==0) :
                 $adminPassword = $this->decrypt($adminPassword);
             //echo $adminPassword;
             endif;
             //echo $this->key;
-            
+
             $adminPassword = preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $adminPassword);
             //iconv(mb_detect_encoding($adminPassword, mb_detect_order(), true), "UTF-8", $adminPassword);
             //$adminPassword = iconv('utf-16', 'utf-8', $adminPassword);
-            
+
             if ($this->dbLogin($qryStrArray2["u"], $adminPassword)) {
                 return $qryStrArray2;
             } else {
@@ -154,12 +174,12 @@ class scoc_encoder
             return null;
         }
     }
-    
+
     public function getQueryStringArrayByDecryption()
     {
         $qryStrArray = array();
         $q = $_SERVER["QUERY_STRING"];
-        
+
 
         if (empty($q) && $this->enabled == true) {
             return null;
@@ -168,11 +188,11 @@ class scoc_encoder
         //if ($this->verbose == 1) {
         //    echo '<br>q before url decode ' . $q;
         //}
-        
+
         // cannot urldecode. each query string param can contain ? and & characters. If
         // we decode now, additional element may be created in the array.
         //$q = urldecode($q);
-        
+
         //if ($this->verbose == 1) {
         //    echo '<br>q after url decode ' . $q;
         //}
@@ -186,10 +206,10 @@ class scoc_encoder
             //if ($this->verbose == 1) {
             //    echo ' decrypted string ' . $strDecrypted;
             //}
-                
+
                 if (!empty($strDecrypted)) :
                     $qryString = "".$strDecrypted;
-                    
+
                 // removed Nov 13, 2017
                 //$qryString = urldecode($qryString);
                 endif;
@@ -206,14 +226,14 @@ class scoc_encoder
                 return urldecode($val);
             }, $qryStrArray);
             $qryStrArray = $this->makeParamLower($qryStrArray);
-            
+
             return $qryStrArray;
         } catch (Exception $ex) {
             echo "<response><status>failure</status><message>" . $ex->getMessage() . "</message></response>";
             return $qryStrArray;
         }
     }
-    
+
     public function encrypt($string)
     {
         $phpEncrypted = $this->tripleDes->Encrypt($string, $this->key);

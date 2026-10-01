@@ -54,17 +54,17 @@ http://www.localhost.com/opencart3020/index.php?route=scoc/import&test=1&verbose
 IMPORT XML PATH
 ==============
 http://www.localhost.com/opencart3020/system/logs/import-log-271113080502.xml
-http://opencart.cellphonemate.net/system/logs/import-xml-301213075445.xml
+https://example-store.example/system/logs/import-xml-301213075445.xml
 
 CRON
 http://www.localhost.com/opencart3020/index.php?route=scoc/cron&id=1
 http://www.localhost.com/opencart3020/index.php?route=scoc/cron
-http://opencart.cellphonemate.net/index.php?route=scoc/cron&id=70
+https://example-store.example/index.php?route=scoc/cron&id=70
 
 GETJOB
 =======
 http://www.localhost.com/opencart3020/index.php?route=scoc/job/getjob&u=admin&p=CHANGE_ME&id=1
-http://opencart.cellphonemate.net/index.php?route=scoc/job/getjob&u=admin&p=CHANGE_ME&id=6
+https://example-store.example/index.php?route=scoc/job/getjob&u=admin&p=CHANGE_ME&id=6
 
 SHIPPING
 ========*
